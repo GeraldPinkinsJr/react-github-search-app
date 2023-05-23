@@ -9,6 +9,6 @@ Users should be able to:
 
 Built with:
 
-React 
-Semantic UI React:
-Github Api https://api.github.com/users/example
+- React 
+- Semantic UI React:
+- Github Api https://api.github.com/users/example
