@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import About from "./components/About";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Form, Card, Image, Icon } from "semantic-ui-react";
 import "./App.css";
@@ -58,69 +59,78 @@ function App() {
   };
 
   return (
-  <div className="container">
-    <div className="navbar">
-      Github Search
-      <Icon
-        name="github"
-        size="big"
-        onClick={() => window.location.reload()}
-        style={{ cursor: "pointer", display: "block", margin: "0 auto" }}
-      />
-    </div>
-    <div className="search">
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Input
-            placeholder="Github username"
-            name="github user"
-            onChange={handleSearch}
+    <Router>
+      <div className="container">
+        <div className="navbar">
+          Github Search
+          <Icon
+            name="github"
+            size="big"
+            onClick={() => window.location.reload()}
+            style={{ cursor: "pointer", display: "block", margin: "0 auto" }}
           />
-          <Form.Button content="Search" />
-        </Form.Group>
-      </Form>
-    </div>
-    {error ? (
-      <h1>{error}</h1>
-    ) : (
-      <div className="card">
-        <Card>
-          <Image src={avatar} wrapped ui={false} />
-          <Card.Content>
-            <Card.Header>{name}</Card.Header>
-            <Card.Header>{userName}</Card.Header>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <img
-                src="https://cdn0.iconfinder.com/data/icons/octicons/1024/repo-512.png"
-                alt="GitHub Repo Icon"
+          <Link to="/about" onClick={() => window.location.reload()}>
+            About
+          </Link>
+          {/* <Routes>
+          <Route exact path="/about" element={<About />} />
+        </Routes> */}
+        </div>
+        <div className="search">
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Input
+                placeholder="Github username"
+                name="github user"
+                onChange={handleSearch}
               />
-              {repos} Repos
-            </a>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <Icon name="user" />
-              {followers} Followers
-            </a>
-          </Card.Content>
-          <Card.Content extra>
-            <a>
-              <Icon name="user" />
-              {following} Following
-            </a>
-          </Card.Content>
-          <Card.Content extra>
-            <a href={url} target="_blank">
-              <Icon name="linkify" />
-              {url}
-            </a>
-          </Card.Content>
-        </Card>
+              <Form.Button content="Search" />
+            </Form.Group>
+          </Form>
+        </div>
+
+        {error ? (
+          <h1>{error}</h1>
+        ) : (
+          <div className="card">
+            <Card>
+              <Image src={avatar} wrapped ui={false} />
+              <Card.Content>
+                <Card.Header>{name}</Card.Header>
+                <Card.Header>{userName}</Card.Header>
+              </Card.Content>
+              <Card.Content extra>
+                <a>
+                  <img
+                    src="https://cdn0.iconfinder.com/data/icons/octicons/1024/repo-512.png"
+                    alt="GitHub Repo Icon"
+                  />
+                  {repos} Repos
+                </a>
+              </Card.Content>
+              <Card.Content extra>
+                <a>
+                  <Icon name="user" />
+                  {followers} Followers
+                </a>
+              </Card.Content>
+              <Card.Content extra>
+                <a>
+                  <Icon name="user" />
+                  {following} Following
+                </a>
+              </Card.Content>
+              <Card.Content extra>
+                <a href={url} target="_blank">
+                  <Icon name="linkify" />
+                  {url}
+                </a>
+              </Card.Content>
+            </Card>
+          </div>
+        )}
       </div>
-    )}
-  </div>
+    </Router>
   );
 }
 
